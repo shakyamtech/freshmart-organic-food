@@ -3404,7 +3404,7 @@
 						</form>
 						
 						<div class="checkbox">
-							<label><input type="checkbox"> Don’t show this popup again</label>
+							<label><input type="checkbox" id="dont-show-popup"> Don’t show this popup again</label>
 						</div>
 					</div>
 				</div>
@@ -3443,6 +3443,51 @@
 		
 		<!-- Template CSS -->
 		<script src="js/main.js"></script>
+		<script>
+			$(document).ready(function() {
+				var $popup = $('.newsletter-popup');
+				if (!$popup.length) return;
+
+				// Hide immediately if user checked "Don't show again" previously
+				if (localStorage.getItem('hideNewsletterPopup') === 'true') {
+					$popup.remove();
+					return;
+				}
+
+				function handlePopupClose() {
+					if ($('#dont-show-popup').is(':checked')) {
+						localStorage.setItem('hideNewsletterPopup', 'true');
+					}
+					$popup.fadeOut(300, function() {
+						$popup.remove();
+					});
+				}
+
+				$('.newsletter-popup .popup .close').off('click').on('click', function(e) {
+					e.preventDefault();
+					handlePopupClose();
+				});
+
+				$('#newsletter-popup').off('click').on('click', function(e) {
+					if (e.target.id === 'newsletter-popup') {
+						handlePopupClose();
+					}
+				});
+
+				$('.newsletter-popup form').on('submit', function(e) {
+					e.preventDefault();
+					handlePopupClose();
+				});
+
+				$('#dont-show-popup').on('change', function() {
+					if ($(this).is(':checked')) {
+						localStorage.setItem('hideNewsletterPopup', 'true');
+					} else {
+						localStorage.removeItem('hideNewsletterPopup');
+					}
+				});
+			});
+		</script>
 	</body>
 
 
