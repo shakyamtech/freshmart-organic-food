@@ -590,13 +590,16 @@
 													</tbody>
 												</table>
 
-												<h4 class="heading-primary">Payment</h4>
+												<h4 class="heading-primary">Payment Method</h4>
 												<form action="#" method="post">
 													<div class="item">
-														<input type="checkbox">Pay by bank wire (order processing will be longer)
+														<input type="radio" name="payment_method" checked> Pay with eSewa (Digital Wallet)
 													</div>
 													<div class="item">
-														<input type="checkbox">Pay by check (order processing will be longer)
+														<input type="radio" name="payment_method"> Pay with Khalti (Digital Wallet)
+													</div>
+													<div class="item">
+														<input type="radio" name="payment_method"> Direct Bank Transfer / Fonepay
 													</div>
 												</form>
 											</div>
