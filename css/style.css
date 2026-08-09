@@ -61,66 +61,31 @@
 	background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Smooth Slide-Down Animation for Header Dropdown Menus */
+/* Standardized Buttery Smooth Dropdown Slide-Down Animation */
 #main-menu .dropdown-menu,
+#main-menu .dropdown .dropdown-menu,
 .dropdown-menu {
-	opacity: 0;
-	transform: translateY(12px);
-	transition: opacity 0.3s ease, transform 0.3s ease;
+	display: block !important;
+	visibility: hidden !important;
+	opacity: 0 !important;
+	transform: translateY(20px) scaleY(0.95) !important;
+	-webkit-transform: translateY(20px) scaleY(0.95) !important;
+	transform-origin: top center !important;
+	-webkit-transform-origin: top center !important;
+	transition: visibility 0.35s ease, opacity 0.35s ease, transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+	-webkit-transition: visibility 0.35s ease, opacity 0.35s ease, -webkit-transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+	pointer-events: none !important;
 }
 
 #main-menu ul li:hover > .dropdown-menu,
-.dropdown:hover > .dropdown-menu,
-.dropdown-submenu:hover > .dropdown-menu {
-	display: block !important;
+#main-menu .dropdown:hover > .dropdown-menu,
+#main-menu .dropdown-submenu:hover > .dropdown-menu,
+.dropdown:hover > .dropdown-menu {
+	visibility: visible !important;
 	opacity: 1 !important;
-	transform: translateY(0) !important;
-	animation: slideDownMenu 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-	-webkit-animation: slideDownMenu 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-@keyframes slideDownMenu {
-	0% {
-		opacity: 0;
-		transform: translateY(15px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@-webkit-keyframes slideDownMenu {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(15px);
-	}
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(0);
-	}
-}
-
-@keyframes animationmenus {
-	0% {
-		opacity: 0;
-		transform: translateY(15px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@-webkit-keyframes animationmenus {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(15px);
-	}
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(0);
-	}
+	transform: translateY(0) scaleY(1) !important;
+	-webkit-transform: translateY(0) scaleY(1) !important;
+	pointer-events: auto !important;
 }
 
 /* High-detail Animated Clock Countdown Styles with Rotating Hands (Sui) */
