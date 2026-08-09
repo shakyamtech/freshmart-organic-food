@@ -60,3 +60,65 @@
 .newsletter-popup {
 	background-color: rgba(0, 0, 0, 0.7);
 }
+
+/* Smooth Slide-Down Animation for Header Dropdown Menus */
+#main-menu .dropdown-menu,
+.dropdown-menu {
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#main-menu ul li:hover > .dropdown-menu,
+.dropdown:hover > .dropdown-menu,
+.dropdown-submenu:hover > .dropdown-menu {
+	display: block !important;
+	opacity: 1 !important;
+	transform: translateY(0) !important;
+	animation: slideDownMenu 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+	-webkit-animation: slideDownMenu 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes slideDownMenu {
+	0% {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes slideDownMenu {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(15px);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@keyframes animationmenus {
+	0% {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes animationmenus {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(15px);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
