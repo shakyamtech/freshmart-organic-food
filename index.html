@@ -37,41 +37,102 @@
 		<link rel="stylesheet" href="css/reponsive.css">
 		
 		<style>
-			/* High-detail Clock Countdown Styles */
+			/* High-detail Animated Clock Countdown Styles with Rotating Hands (Sui) */
 			.product-countdown .item {
 				position: relative !important;
 				display: inline-block !important;
 				text-align: center !important;
-				margin-right: 12px !important;
-				width: 44px !important;
+				margin-right: 14px !important;
+				width: 50px !important;
+				vertical-align: top !important;
 			}
 			.product-countdown .item img {
 				display: block !important;
 				width: 42px !important;
 				height: 42px !important;
-				margin: 0 auto 5px auto !important;
+				margin: 0 auto 4px auto !important;
+				position: relative !important;
+				z-index: 1 !important;
 			}
-			.product-countdown .item .number {
+			/* Center dot for clock hand (sui) */
+			.product-countdown .item::after {
+				content: '' !important;
 				position: absolute !important;
-				top: 14px !important;
-				left: 0 !important;
+				top: 19px !important;
+				left: 23px !important;
+				width: 4px !important;
+				height: 4px !important;
+				background: #114b26 !important;
+				border-radius: 50% !important;
+				z-index: 4 !important;
+			}
+			/* Animated Rotating Clock Hand (Sui) */
+			.product-countdown .item::before {
+				content: '' !important;
+				position: absolute !important;
+				top: 21px !important;
+				left: 24px !important;
+				width: 2px !important;
+				height: 13px !important;
+				background: #78b144 !important;
+				border-radius: 2px !important;
+				transform-origin: 50% 0% !important;
+				z-index: 3 !important;
+			}
+			/* Hours Clock Hand (Sui) Rotation */
+			.product-countdown .item:nth-child(1)::before {
+				animation: rotateClockSui 12s linear infinite !important;
+				-webkit-animation: rotateClockSui 12s linear infinite !important;
+				background: #3ba66b !important;
+				height: 11px !important;
+				width: 2.5px !important;
+			}
+			/* Minutes Clock Hand (Sui) Rotation */
+			.product-countdown .item:nth-child(2)::before {
+				animation: rotateClockSui 4s linear infinite !important;
+				-webkit-animation: rotateClockSui 4s linear infinite !important;
+				background: #78b144 !important;
+				height: 13px !important;
+				width: 2px !important;
+			}
+			/* Seconds Clock Hand (Sui) Rotation - Ticking Red Second Hand */
+			.product-countdown .item:nth-child(3)::before {
+				animation: rotateClockSui 1s linear infinite !important;
+				-webkit-animation: rotateClockSui 1s linear infinite !important;
+				background: #e74c3c !important;
+				height: 15px !important;
+				width: 1.5px !important;
+			}
+			@keyframes rotateClockSui {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+			@-webkit-keyframes rotateClockSui {
+				0% { -webkit-transform: rotate(0deg); }
+				100% { -webkit-transform: rotate(360deg); }
+			}
+			/* Clean Digits (Numbers) displayed right under the clock icon */
+			.product-countdown .item .number {
+				position: static !important;
+				display: block !important;
 				width: 100% !important;
 				text-align: center !important;
 				color: #114b26 !important;
 				font-weight: 800 !important;
-				font-size: 11px !important;
-				font-family: 'Roboto', 'Segoe UI', sans-serif !important;
-				line-height: 1 !important;
-				letter-spacing: -0.4px !important;
-				text-shadow: 0 0 3px rgba(255, 255, 255, 1), 0 0 1px rgba(255, 255, 255, 1) !important;
-				z-index: 2 !important;
+				font-size: 13px !important;
+				font-family: 'Roboto', sans-serif !important;
+				line-height: 1.2 !important;
+				margin-top: 2px !important;
+				text-shadow: none !important;
 			}
 			.product-countdown .item .text {
 				display: block !important;
-				font-size: 10px !important;
-				font-weight: 600 !important;
-				color: #555 !important;
+				font-size: 9px !important;
+				font-weight: 700 !important;
+				color: #666 !important;
 				text-transform: uppercase !important;
+				letter-spacing: 0.5px !important;
+				margin-top: 1px !important;
 			}
 		</style>
 	</head>
