@@ -429,9 +429,10 @@
                 <span style="font-size: 11px; opacity: 0.7; letter-spacing: 1px;">ORGANIC ADMIN</span>
             </div>
             <ul class="sidebar-nav">
-                <li><a href="#" class="active" onclick="switchTab('dashboard')"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li><a href="#" onclick="switchTab('products')"><i class="fa fa-shopping-basket"></i> Products Management</a></li>
-                <li><a href="#" onclick="switchTab('orders')"><i class="fa fa-shopping-cart"></i> Orders Tracking</a></li>
+                <li><a href="#" id="nav-dashboard" class="active" onclick="switchTab('dashboard')"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li><a href="#" id="nav-products" onclick="switchTab('products')"><i class="fa fa-shopping-basket"></i> Products Management</a></li>
+                <li><a href="#" id="nav-orders" onclick="switchTab('orders')"><i class="fa fa-shopping-cart"></i> Orders Tracking</a></li>
+                <li><a href="#" id="nav-homepage" onclick="switchTab('homepage')"><i class="fa fa-paint-brush"></i> Homepage Settings</a></li>
                 <li><a href="index.html" target="_blank"><i class="fa fa-external-link"></i> View Live Store</a></li>
             </ul>
             <div class="sidebar-user">
@@ -528,6 +529,84 @@
                             <tr><td colspan="7" style="text-align: center; color: #888; padding: 20px;">No customer orders yet.</td></tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- HOMEPAGE LAYOUT SETTINGS PANEL -->
+            <div class="panel" id="homepage-section" style="display: none;">
+                <div class="panel-header">
+                    <div>
+                        <h3>🎨 Homepage Layout Settings</h3>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Choose which Homepage style to display for all website visitors</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;" id="homepage-cards-container">
+                    
+                    <!-- CARD 1 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-index.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Homepage 1 (Classic)</h4>
+                            <span class="badge badge-success" id="badge-index.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Classic green organic store layout with hero banner, countdown deal timers, and category grids.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-index.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveHomepage('index.html')">Activate Layout</button>
+                            <a href="index.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-home-2.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Homepage 2 (Modern Grid)</h4>
+                            <span class="badge badge-success" id="badge-home-2.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Modern grid layout with prominent category cards, fresh produce highlights, and clean typography.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-home-2.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveHomepage('home-2.html')">Activate Layout</button>
+                            <a href="home-2.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-home-3.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Homepage 3 (Full Hero)</h4>
+                            <span class="badge badge-success" id="badge-home-3.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Full-width hero slider layout featuring high-resolution organic photography and prominent call to actions.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-home-3.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveHomepage('home-3.html')">Activate Layout</button>
+                            <a href="home-3.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-home-4.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Homepage 4 (Clean Focus)</h4>
+                            <span class="badge badge-success" id="badge-home-4.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Clean minimal layout emphasizing organic fruit & vegetable product cards with quick add-to-cart buttons.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-home-4.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveHomepage('home-4.html')">Activate Layout</button>
+                            <a href="home-4.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- CARD 5 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-home-5.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Homepage 5 (Special Deals)</h4>
+                            <span class="badge badge-success" id="badge-home-5.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Deal-focused layout highlighting daily discounts, promotional banners, and featured bakery & juice sections.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-home-5.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveHomepage('home-5.html')">Activate Layout</button>
+                            <a href="home-5.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -777,6 +856,92 @@
                 alert('Error updating order: ' + err.message);
             }
         };
+
+        // SWITCH TAB FUNCTION
+        window.switchTab = function(tabName) {
+            const sections = ['dashboard-stats', 'products-section', 'orders-section', 'homepage-section'];
+            const navIds = ['nav-dashboard', 'nav-products', 'nav-orders', 'nav-homepage'];
+
+            // Update nav active states
+            navIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('active');
+            });
+
+            if (tabName === 'dashboard') {
+                document.getElementById('nav-dashboard').classList.add('active');
+                document.getElementById('dashboard-stats').style.display = 'grid';
+                document.getElementById('products-section').style.display = 'block';
+                document.getElementById('orders-section').style.display = 'block';
+                document.getElementById('homepage-section').style.display = 'none';
+                document.getElementById('page-title').textContent = 'Dashboard Overview';
+            } else if (tabName === 'products') {
+                document.getElementById('nav-products').classList.add('active');
+                document.getElementById('dashboard-stats').style.display = 'none';
+                document.getElementById('products-section').style.display = 'block';
+                document.getElementById('orders-section').style.display = 'none';
+                document.getElementById('homepage-section').style.display = 'none';
+                document.getElementById('page-title').textContent = 'Products Inventory';
+            } else if (tabName === 'orders') {
+                document.getElementById('nav-orders').classList.add('active');
+                document.getElementById('dashboard-stats').style.display = 'none';
+                document.getElementById('products-section').style.display = 'none';
+                document.getElementById('orders-section').style.display = 'block';
+                document.getElementById('homepage-section').style.display = 'none';
+                document.getElementById('page-title').textContent = 'Customer Orders';
+            } else if (tabName === 'homepage') {
+                document.getElementById('nav-homepage').classList.add('active');
+                document.getElementById('dashboard-stats').style.display = 'none';
+                document.getElementById('products-section').style.display = 'none';
+                document.getElementById('orders-section').style.display = 'none';
+                document.getElementById('homepage-section').style.display = 'block';
+                document.getElementById('page-title').textContent = 'Homepage Layout Settings';
+            }
+        };
+
+        // HOMEPAGE ACTIVE SETTING
+        window.setActiveHomepage = async function(layoutFile) {
+            try {
+                await setDoc(doc(db, 'settings', 'homepage'), {
+                    activeHomepage: layoutFile,
+                    updatedAt: serverTimestamp()
+                });
+                alert('Homepage layout activated successfully! Visitors will now see ' + layoutFile);
+            } catch (err) {
+                alert('Error updating homepage layout: ' + err.message);
+            }
+        };
+
+        // SYNC ACTIVE HOMEPAGE LAYOUT BADGE IN ADMIN
+        const themeDocRef = doc(db, 'settings', 'homepage');
+        onSnapshot(themeDocRef, (docSnap) => {
+            const pages = ['index.html', 'home-2.html', 'home-3.html', 'home-4.html', 'home-5.html'];
+            const activeFile = docSnap.exists() ? (docSnap.data().activeHomepage || 'index.html') : 'index.html';
+
+            pages.forEach(p => {
+                const card = document.getElementById('card-' + p);
+                const badge = document.getElementById('badge-' + p);
+                const btn = document.getElementById('btn-' + p);
+
+                if (p === activeFile) {
+                    if (card) card.style.borderColor = '#4ca64c';
+                    if (badge) badge.style.display = 'inline-block';
+                    if (btn) {
+                        btn.textContent = 'Current Active Layout';
+                        btn.disabled = true;
+                        btn.style.background = '#88c888';
+                    }
+                } else {
+                    if (card) card.style.borderColor = 'var(--border)';
+                    if (badge) badge.style.display = 'none';
+                    if (btn) {
+                        btn.textContent = 'Activate Layout';
+                        btn.disabled = false;
+                        btn.style.background = 'var(--primary)';
+                    }
+                }
+            });
+        });
 
         // UI HELPERS
         window.openProductModal = function() {
