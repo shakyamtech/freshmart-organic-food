@@ -21,9 +21,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  projectId: "freshmart-organic",
+  apiKey: "AIzaSyBVIESQo1kLKb47XwgcfaERKQDLL31eZPs",
   authDomain: "freshmart-organic.firebaseapp.com",
-  storageBucket: "freshmart-organic.appspot.com"
+  projectId: "freshmart-organic",
+  storageBucket: "freshmart-organic.firebasestorage.app",
+  messagingSenderId: "958394994183",
+  appId: "1:958394994183:web:2a2d476ce0969b743864a2",
+  measurementId: "G-Y0CYR5LQC8"
 };
 
 const app = initializeApp(firebaseConfig);
