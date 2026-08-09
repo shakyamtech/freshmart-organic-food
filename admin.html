@@ -721,6 +721,56 @@
                     </div>
 
                 </div>
+
+                <!-- SECTION 4: BLOG PAGE LAYOUT SETTINGS -->
+                <div class="panel-header" style="margin-top: 45px; border-top: 1px solid var(--border); padding-top: 25px;">
+                    <div>
+                        <h3>📝 Blog Page Layout Settings</h3>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Choose which Blog Listing Page layout to display when visitors click "BLOG"</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    
+                    <!-- BLOG CARD 1 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-blog-list-left-sidebar-1.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Blog List - Left Sidebar 1</h4>
+                            <span class="badge badge-success" id="badge-blog-list-left-sidebar-1.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Classic blog layout with large article cards, search bar, and recent post widgets on the left sidebar.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-blog-list-left-sidebar-1.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveBlogLayout('blog-list-left-sidebar-1.html')">Activate Layout</button>
+                            <a href="blog-list-left-sidebar-1.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- BLOG CARD 2 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-blog-list-left-sidebar-2.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Blog List - Left Sidebar 2</h4>
+                            <span class="badge badge-success" id="badge-blog-list-left-sidebar-2.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Compact blog listing layout featuring side-by-side post thumbnails and category tag filters.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-blog-list-left-sidebar-2.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveBlogLayout('blog-list-left-sidebar-2.html')">Activate Layout</button>
+                            <a href="blog-list-left-sidebar-2.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- BLOG CARD 3 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-blog-grid-full-width.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Blog Grid - Full Width</h4>
+                            <span class="badge badge-success" id="badge-blog-grid-full-width.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Modern 3-column full-width blog grid layout for clean, magazine-style article browsing.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-blog-grid-full-width.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveBlogLayout('blog-grid-full-width.html')">Activate Layout</button>
+                            <a href="blog-grid-full-width.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -1130,6 +1180,50 @@
                 const btn = document.getElementById('btn-' + p);
 
                 if (p === activeDetailFile) {
+                    if (card) card.style.borderColor = '#4ca64c';
+                    if (badge) badge.style.display = 'inline-block';
+                    if (btn) {
+                        btn.textContent = 'Current Active Layout';
+                        btn.disabled = true;
+                        btn.style.background = '#88c888';
+                    }
+                } else {
+                    if (card) card.style.borderColor = 'var(--border)';
+                    if (badge) badge.style.display = 'none';
+                    if (btn) {
+                        btn.textContent = 'Activate Layout';
+                        btn.disabled = false;
+                        btn.style.background = 'var(--primary)';
+                    }
+                }
+            });
+        });
+
+        // BLOG PAGE LAYOUT SETTING
+        window.setActiveBlogLayout = async function(layoutFile) {
+            try {
+                await setDoc(doc(db, 'settings', 'blog_layout'), {
+                    activeBlogLayout: layoutFile,
+                    updatedAt: serverTimestamp()
+                });
+                alert('Blog page layout activated successfully! Visitors clicking "BLOG" will now see ' + layoutFile);
+            } catch (err) {
+                alert('Error updating blog layout: ' + err.message);
+            }
+        };
+
+        // SYNC ACTIVE BLOG LAYOUT BADGE IN ADMIN
+        const blogLayoutDocRef = doc(db, 'settings', 'blog_layout');
+        onSnapshot(blogLayoutDocRef, (docSnap) => {
+            const blogPages = ['blog-list-left-sidebar-1.html', 'blog-list-left-sidebar-2.html', 'blog-grid-full-width.html'];
+            const activeBlogFile = docSnap.exists() ? (docSnap.data().activeBlogLayout || 'blog-list-left-sidebar-1.html') : 'blog-list-left-sidebar-1.html';
+
+            blogPages.forEach(p => {
+                const card = document.getElementById('card-' + p);
+                const badge = document.getElementById('badge-' + p);
+                const btn = document.getElementById('btn-' + p);
+
+                if (p === activeBlogFile) {
                     if (card) card.style.borderColor = '#4ca64c';
                     if (badge) badge.style.display = 'inline-block';
                     if (btn) {
