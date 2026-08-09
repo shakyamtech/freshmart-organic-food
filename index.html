@@ -35,6 +35,45 @@
 		<!-- Template CSS -->
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/reponsive.css">
+		
+		<style>
+			/* High-detail Clock Countdown Styles */
+			.product-countdown .item {
+				position: relative !important;
+				display: inline-block !important;
+				text-align: center !important;
+				margin-right: 12px !important;
+				width: 44px !important;
+			}
+			.product-countdown .item img {
+				display: block !important;
+				width: 42px !important;
+				height: 42px !important;
+				margin: 0 auto 5px auto !important;
+			}
+			.product-countdown .item .number {
+				position: absolute !important;
+				top: 14px !important;
+				left: 0 !important;
+				width: 100% !important;
+				text-align: center !important;
+				color: #114b26 !important;
+				font-weight: 800 !important;
+				font-size: 11px !important;
+				font-family: 'Roboto', 'Segoe UI', sans-serif !important;
+				line-height: 1 !important;
+				letter-spacing: -0.4px !important;
+				text-shadow: 0 0 3px rgba(255, 255, 255, 1), 0 0 1px rgba(255, 255, 255, 1) !important;
+				z-index: 2 !important;
+			}
+			.product-countdown .item .text {
+				display: block !important;
+				font-size: 10px !important;
+				font-weight: 600 !important;
+				color: #555 !important;
+				text-transform: uppercase !important;
+			}
+		</style>
 	</head>
 	
 	<body class="home home-1">
@@ -3490,6 +3529,40 @@
 					} else {
 						localStorage.removeItem('hideNewsletterPopup');
 					}
+				});
+
+				// Interactive Cart Item Removal
+				$(document).on('click', '.block-cart .cart-content table a.remove', function(e) {
+					e.preventDefault();
+					var $row = $(this).closest('tr');
+					$row.fadeOut(250, function() {
+						$(this).remove();
+						
+						var total = 0;
+						var count = 0;
+						
+						$('.block-cart .cart-content table tbody tr').not('.total').each(function() {
+							var qtyText = $(this).find('td:nth-child(2) div:last-child').text();
+							var parts = qtyText.split('x');
+							if (parts.length === 2) {
+								var qty = parseInt(parts[0].trim(), 10) || 1;
+								var priceStr = parts[1].replace(/[^0-9.]/g, '');
+								var price = parseFloat(priceStr) || 0;
+								total += qty * price;
+								count += qty;
+							}
+						});
+						
+						// Update total display
+						$('.block-cart .cart-content table tr.total td:last-child').text('Rs. ' + total.toFixed(2));
+						
+						// Update cart count badge
+						$('.block-cart .cart-count').text(count);
+						
+						if (count === 0) {
+							$('.block-cart .cart-content table tbody').html('<tr><td colspan="3" style="text-align:center; padding: 25px 0; color:#777; font-size:14px;">Your cart is empty</td></tr>');
+						}
+					});
 				});
 			});
 		</script>
