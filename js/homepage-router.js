@@ -1,4 +1,4 @@
-// Dynamic Homepage & Product Page Router for Freshmart Organic Food
+// Dynamic Homepage, Product Page & Product Detail Router for Freshmart Organic Food
 import { db, doc, onSnapshot } from "./firebase-config.js";
 
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
@@ -25,7 +25,7 @@ if (!currentPath.includes('admin')) {
       });
     }
 
-    // 2. DYNAMIC PRODUCT PAGE LINK UPDATER
+    // 2. DYNAMIC PRODUCT LISTING PAGE LINK UPDATER
     const productDocRef = doc(db, 'settings', 'product_layout');
     onSnapshot(productDocRef, (docSnap) => {
       if (docSnap.exists()) {
@@ -35,6 +35,20 @@ if (!currentPath.includes('admin')) {
         const productLinks = document.querySelectorAll('a[title="Product"], a.dynamic-product-link');
         productLinks.forEach(link => {
           link.href = activeProductPage;
+        });
+      }
+    });
+
+    // 3. DYNAMIC PRODUCT DETAIL PAGE LINK UPDATER
+    const detailDocRef = doc(db, 'settings', 'product_detail_layout');
+    onSnapshot(detailDocRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const activeDetailPage = docSnap.data().activeDetailLayout || 'product-detail-left-sidebar.html';
+        
+        // Update all Product Detail links on current page
+        const detailLinks = document.querySelectorAll('a[href*="product-detail"], a.dynamic-detail-link');
+        detailLinks.forEach(link => {
+          link.href = activeDetailPage;
         });
       }
     });

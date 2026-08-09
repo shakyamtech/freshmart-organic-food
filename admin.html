@@ -671,6 +671,56 @@
                     </div>
 
                 </div>
+
+                <!-- SECTION 3: PRODUCT DETAIL PAGE LAYOUT SETTINGS -->
+                <div class="panel-header" style="margin-top: 45px; border-top: 1px solid var(--border); padding-top: 25px;">
+                    <div>
+                        <h3>🔍 Product Detail Page Layout Settings</h3>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Choose which Product Detail Page layout to display when visitors click on any product</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    
+                    <!-- DETAIL CARD 1 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-product-detail-left-sidebar.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Detail - Left Sidebar</h4>
+                            <span class="badge badge-success" id="badge-product-detail-left-sidebar.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Product detail view with product gallery, tabs, and related categories on the left sidebar.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-product-detail-left-sidebar.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveDetailLayout('product-detail-left-sidebar.html')">Activate Layout</button>
+                            <a href="product-detail-left-sidebar.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- DETAIL CARD 2 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-product-detail-full-width-1.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Detail - Full Width 1</h4>
+                            <span class="badge badge-success" id="badge-product-detail-full-width-1.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Full-width single product presentation with wide image sliders and customer review sections.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-product-detail-full-width-1.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveDetailLayout('product-detail-full-width-1.html')">Activate Layout</button>
+                            <a href="product-detail-full-width-1.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- DETAIL CARD 3 -->
+                    <div class="stat-card" style="flex-direction: column; align-items: flex-start; position: relative; border: 2px solid var(--border); padding: 20px;" id="card-product-detail-full-width-2.html">
+                        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 16px; font-weight: 700; color: #1e3a1e;">Detail - Full Width 2</h4>
+                            <span class="badge badge-success" id="badge-product-detail-full-width-2.html" style="display: none;">ACTIVE</span>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Modern minimalist full-width detail view highlighting nutritional info and quantity selectors.</p>
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <button class="btn-primary" id="btn-product-detail-full-width-2.html" style="flex: 1; padding: 10px; font-size: 13px;" onclick="setActiveDetailLayout('product-detail-full-width-2.html')">Activate Layout</button>
+                            <a href="product-detail-full-width-2.html" target="_blank" class="btn-primary" style="background: #eaf5ea; color: #4ca64c; width: auto; padding: 10px 14px; font-size: 13px; text-decoration: none; text-align: center;" title="Preview"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -1011,7 +1061,7 @@
                 }
             });
         });
-        // PRODUCT PAGE LAYOUT SETTING
+        // PRODUCT LISTING PAGE LAYOUT SETTING
         window.setActiveProductLayout = async function(layoutFile) {
             try {
                 await setDoc(doc(db, 'settings', 'product_layout'), {
@@ -1024,7 +1074,7 @@
             }
         };
 
-        // SYNC ACTIVE PRODUCT LAYOUT BADGE IN ADMIN
+        // SYNC ACTIVE PRODUCT LISTING LAYOUT BADGE IN ADMIN
         const productLayoutDocRef = doc(db, 'settings', 'product_layout');
         onSnapshot(productLayoutDocRef, (docSnap) => {
             const prodPages = ['product-grid-left-sidebar.html', 'product-grid-right-sidebar.html', 'product-grid-full-width.html', 'product-list-left-sidebar.html'];
@@ -1036,6 +1086,50 @@
                 const btn = document.getElementById('btn-' + p);
 
                 if (p === activeProdFile) {
+                    if (card) card.style.borderColor = '#4ca64c';
+                    if (badge) badge.style.display = 'inline-block';
+                    if (btn) {
+                        btn.textContent = 'Current Active Layout';
+                        btn.disabled = true;
+                        btn.style.background = '#88c888';
+                    }
+                } else {
+                    if (card) card.style.borderColor = 'var(--border)';
+                    if (badge) badge.style.display = 'none';
+                    if (btn) {
+                        btn.textContent = 'Activate Layout';
+                        btn.disabled = false;
+                        btn.style.background = 'var(--primary)';
+                    }
+                }
+            });
+        });
+
+        // PRODUCT DETAIL PAGE LAYOUT SETTING
+        window.setActiveDetailLayout = async function(layoutFile) {
+            try {
+                await setDoc(doc(db, 'settings', 'product_detail_layout'), {
+                    activeDetailLayout: layoutFile,
+                    updatedAt: serverTimestamp()
+                });
+                alert('Product detail page layout activated successfully! Visitors viewing product details will now see ' + layoutFile);
+            } catch (err) {
+                alert('Error updating detail layout: ' + err.message);
+            }
+        };
+
+        // SYNC ACTIVE PRODUCT DETAIL LAYOUT BADGE IN ADMIN
+        const detailLayoutDocRef = doc(db, 'settings', 'product_detail_layout');
+        onSnapshot(detailLayoutDocRef, (docSnap) => {
+            const detailPages = ['product-detail-left-sidebar.html', 'product-detail-full-width-1.html', 'product-detail-full-width-2.html'];
+            const activeDetailFile = docSnap.exists() ? (docSnap.data().activeDetailLayout || 'product-detail-left-sidebar.html') : 'product-detail-left-sidebar.html';
+
+            detailPages.forEach(p => {
+                const card = document.getElementById('card-' + p);
+                const badge = document.getElementById('badge-' + p);
+                const btn = document.getElementById('btn-' + p);
+
+                if (p === activeDetailFile) {
                     if (card) card.style.borderColor = '#4ca64c';
                     if (badge) badge.style.display = 'inline-block';
                     if (btn) {
