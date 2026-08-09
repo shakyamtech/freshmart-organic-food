@@ -457,7 +457,7 @@
             </div>
 
             <!-- STATS CARDS -->
-            <div class="stats-grid">
+            <div class="stats-grid" id="dashboard-stats">
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fa fa-cubes"></i></div>
                     <div class="stat-info">
@@ -859,7 +859,6 @@
 
         // SWITCH TAB FUNCTION
         window.switchTab = function(tabName) {
-            const sections = ['dashboard-stats', 'products-section', 'orders-section', 'homepage-section'];
             const navIds = ['nav-dashboard', 'nav-products', 'nav-orders', 'nav-homepage'];
 
             // Update nav active states
@@ -868,34 +867,40 @@
                 if (el) el.classList.remove('active');
             });
 
+            const statsEl = document.getElementById('dashboard-stats');
+            const prodEl = document.getElementById('products-section');
+            const orderEl = document.getElementById('orders-section');
+            const homeEl = document.getElementById('homepage-section');
+            const titleEl = document.getElementById('page-title');
+
             if (tabName === 'dashboard') {
-                document.getElementById('nav-dashboard').classList.add('active');
-                document.getElementById('dashboard-stats').style.display = 'grid';
-                document.getElementById('products-section').style.display = 'block';
-                document.getElementById('orders-section').style.display = 'block';
-                document.getElementById('homepage-section').style.display = 'none';
-                document.getElementById('page-title').textContent = 'Dashboard Overview';
+                if (document.getElementById('nav-dashboard')) document.getElementById('nav-dashboard').classList.add('active');
+                if (statsEl) statsEl.style.display = 'grid';
+                if (prodEl) prodEl.style.display = 'block';
+                if (orderEl) orderEl.style.display = 'block';
+                if (homeEl) homeEl.style.display = 'none';
+                if (titleEl) titleEl.textContent = 'Dashboard Overview';
             } else if (tabName === 'products') {
-                document.getElementById('nav-products').classList.add('active');
-                document.getElementById('dashboard-stats').style.display = 'none';
-                document.getElementById('products-section').style.display = 'block';
-                document.getElementById('orders-section').style.display = 'none';
-                document.getElementById('homepage-section').style.display = 'none';
-                document.getElementById('page-title').textContent = 'Products Inventory';
+                if (document.getElementById('nav-products')) document.getElementById('nav-products').classList.add('active');
+                if (statsEl) statsEl.style.display = 'none';
+                if (prodEl) prodEl.style.display = 'block';
+                if (orderEl) orderEl.style.display = 'none';
+                if (homeEl) homeEl.style.display = 'none';
+                if (titleEl) titleEl.textContent = 'Products Inventory';
             } else if (tabName === 'orders') {
-                document.getElementById('nav-orders').classList.add('active');
-                document.getElementById('dashboard-stats').style.display = 'none';
-                document.getElementById('products-section').style.display = 'none';
-                document.getElementById('orders-section').style.display = 'block';
-                document.getElementById('homepage-section').style.display = 'none';
-                document.getElementById('page-title').textContent = 'Customer Orders';
+                if (document.getElementById('nav-orders')) document.getElementById('nav-orders').classList.add('active');
+                if (statsEl) statsEl.style.display = 'none';
+                if (prodEl) prodEl.style.display = 'none';
+                if (orderEl) orderEl.style.display = 'block';
+                if (homeEl) homeEl.style.display = 'none';
+                if (titleEl) titleEl.textContent = 'Customer Orders';
             } else if (tabName === 'homepage') {
-                document.getElementById('nav-homepage').classList.add('active');
-                document.getElementById('dashboard-stats').style.display = 'none';
-                document.getElementById('products-section').style.display = 'none';
-                document.getElementById('orders-section').style.display = 'none';
-                document.getElementById('homepage-section').style.display = 'block';
-                document.getElementById('page-title').textContent = 'Homepage Layout Settings';
+                if (document.getElementById('nav-homepage')) document.getElementById('nav-homepage').classList.add('active');
+                if (statsEl) statsEl.style.display = 'none';
+                if (prodEl) prodEl.style.display = 'none';
+                if (orderEl) orderEl.style.display = 'none';
+                if (homeEl) homeEl.style.display = 'block';
+                if (titleEl) titleEl.textContent = 'Homepage Layout Settings';
             }
         };
 
