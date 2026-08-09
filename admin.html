@@ -110,6 +110,32 @@
             box-shadow: 0 0 0 3px rgba(76, 166, 76, 0.15);
         }
 
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
+            padding-right: 42px;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .toggle-password-btn:hover {
+            color: var(--primary);
+        }
+
         .btn-primary {
             width: 100%;
             padding: 14px;
@@ -381,7 +407,12 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+                        <button type="button" id="toggle-password" class="toggle-password-btn" title="Toggle password visibility">
+                            <i class="fa fa-eye-slash" id="toggle-password-icon"></i>
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" class="btn-primary" id="login-btn">Log In to Dashboard</button>
                 <div id="auth-error" class="auth-error">Invalid admin credentials.</div>
@@ -587,6 +618,21 @@
         });
 
         // LOGIN FORM
+        const togglePassBtn = document.getElementById('toggle-password');
+        if (togglePassBtn) {
+            togglePassBtn.addEventListener('click', () => {
+                const passInput = document.getElementById('login-password');
+                const passIcon = document.getElementById('toggle-password-icon');
+                if (passInput.type === 'password') {
+                    passInput.type = 'text';
+                    passIcon.className = 'fa fa-eye';
+                } else {
+                    passInput.type = 'password';
+                    passIcon.className = 'fa fa-eye-slash';
+                }
+            });
+        }
+
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
