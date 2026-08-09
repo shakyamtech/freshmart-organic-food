@@ -1,25 +1,31 @@
 // Dynamic Homepage, Product Page, Product Detail & Blog Router for Freshmart Organic Food
 import { db, doc, onSnapshot } from "./firebase-config.js";
 
-const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+function normalizePageName(str) {
+  if (!str) return 'index';
+  let clean = str.split('/').pop().split('?')[0].replace(/\.html$/, '').replace(/^\//, '').trim();
+  return (clean === '' || clean === 'index') ? 'index' : clean;
+}
+
+const currentNormalized = normalizePageName(window.location.pathname);
 
 // Do not run router inside Admin Panel
-if (!currentPath.includes('admin')) {
+if (!currentNormalized.includes('admin')) {
   try {
     // 1. DYNAMIC HOMEPAGE ROUTING
-    const isHomepage = ['index.html', 'home-2.html', 'home-3.html', 'home-4.html', 'home-5.html', ''].includes(currentPath);
+    const isHomepage = ['index', 'home-2', 'home-3', 'home-4', 'home-5'].includes(currentNormalized);
     
     if (isHomepage) {
       const themeDocRef = doc(db, 'settings', 'homepage');
       onSnapshot(themeDocRef, (docSnap) => {
         if (docSnap.exists()) {
-          const activePage = docSnap.data().activeHomepage || 'index.html';
-          let normalizedCurrent = (currentPath === '' || currentPath === '/') ? 'index.html' : currentPath;
+          const activePageRaw = docSnap.data().activeHomepage || 'index.html';
+          const activeNormalized = normalizePageName(activePageRaw);
 
-          if (activePage !== normalizedCurrent) {
-            if (window.location.pathname.endsWith(activePage) === false) {
-              window.location.href = activePage;
-            }
+          if (activeNormalized !== currentNormalized) {
+            // Prevent infinite loop by checking normalized page names
+            const targetUrl = activeNormalized === 'index' ? 'index.html' : `${activeNormalized}.html`;
+            window.location.href = targetUrl;
           }
         }
       });
