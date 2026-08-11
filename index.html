@@ -134,56 +134,7 @@
 				letter-spacing: 0.5px !important;
 				margin-top: 1px !important;
 			}
-			
-			/* 100% Bulletproof Horizontal Auto-Glide Marquee for Partner Brand Logos */
-			.partners-marquee-container {
-				width: 100% !important;
-				overflow: hidden !important;
-				white-space: nowrap !important;
-				position: relative !important;
-				padding: 20px 0 !important;
-				background: #ffffff !important;
-				text-align: center !important;
-				mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent) !important;
-				-webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent) !important;
-			}
-			.partners-marquee-content {
-				display: inline-block !important;
-				white-space: nowrap !important;
-				animation: marqueeGlide 18s linear infinite !important;
-				-webkit-animation: marqueeGlide 18s linear infinite !important;
-			}
-			.partners-marquee-container:hover .partners-marquee-content {
-				animation-play-state: paused !important;
-				-webkit-animation-play-state: paused !important;
-			}
-			.partners-marquee-content a {
-				display: inline-block !important;
-				margin: 0 35px !important;
-				vertical-align: middle !important;
-				text-decoration: none !important;
-			}
-			.partners-marquee-content img {
-				height: 50px !important;
-				max-height: 50px !important;
-				width: auto !important;
-				display: inline-block !important;
-				vertical-align: middle !important;
-				filter: opacity(0.85) !important;
-				transition: filter 0.3s ease, transform 0.3s ease !important;
-			}
-			.partners-marquee-content a:hover img {
-				filter: opacity(1) !important;
-				transform: scale(1.12) !important;
-			}
-			@keyframes marqueeGlide {
-				0% { transform: translateX(0); }
-				100% { transform: translateX(-50%); }
-			}
-			@-webkit-keyframes marqueeGlide {
-				0% { -webkit-transform: translateX(0); }
-				100% { -webkit-transform: translateX(-50%); }
-			}
+
 		</style>
 	</head>
 	
@@ -3229,26 +3180,17 @@
 				</div>
 				
 				
-				<!-- Partners / Brand Logos Marquee Auto Glide -->
+				<!-- Partners -->
 				<div class="section partners">
 					<div class="block-content">
 						<div class="container">
-							<div class="partners-marquee-container">
-								<div class="partners-marquee-content">
-									<a href="#"><img src="img/partner-1.jpg" alt="Shakyamtech" title="Shakyamtech Tech & Agri Solutions"></a>
-									<a href="#"><img src="img/partner-2.jpg" alt="FreshMart" title="FreshMart Organic Foods"></a>
-									<a href="#"><img src="img/partner-3.jpg" alt="AgriNepal" title="AgriNepal Organic Farms"></a>
-									<a href="#"><img src="img/partner-4.jpg" alt="Himalayan Harvest" title="Himalayan Organic Harvest"></a>
-									<a href="#"><img src="img/partner-5.jpg" alt="EcoFarm" title="EcoFarm Nepal Produce"></a>
-									<a href="#"><img src="img/partner-6.jpg" alt="Organic Nepal" title="Organic Nepal Network"></a>
-									<!-- Duplicated set for seamless infinite loop -->
-									<a href="#"><img src="img/partner-1.jpg" alt="Shakyamtech" title="Shakyamtech Tech & Agri Solutions"></a>
-									<a href="#"><img src="img/partner-2.jpg" alt="FreshMart" title="FreshMart Organic Foods"></a>
-									<a href="#"><img src="img/partner-3.jpg" alt="AgriNepal" title="AgriNepal Organic Farms"></a>
-									<a href="#"><img src="img/partner-4.jpg" alt="Himalayan Harvest" title="Himalayan Organic Harvest"></a>
-									<a href="#"><img src="img/partner-5.jpg" alt="EcoFarm" title="EcoFarm Nepal Produce"></a>
-									<a href="#"><img src="img/partner-6.jpg" alt="Organic Nepal" title="Organic Nepal Network"></a>
-								</div>
+							<div class="partners-wrap owl-theme owl-carousel">
+								<a href="#"><img src="img/partner-1.jpg" alt="Shakyamtech" title="Shakyamtech Tech & Agri Solutions"></a>
+								<a href="#"><img src="img/partner-2.jpg" alt="FreshMart" title="FreshMart Organic Foods"></a>
+								<a href="#"><img src="img/partner-3.jpg" alt="AgriNepal" title="AgriNepal Organic Farms"></a>
+								<a href="#"><img src="img/partner-4.jpg" alt="Himalayan Harvest" title="Himalayan Organic Harvest"></a>
+								<a href="#"><img src="img/partner-5.jpg" alt="EcoFarm" title="EcoFarm Nepal Produce"></a>
+								<a href="#"><img src="img/partner-6.jpg" alt="Organic Nepal" title="Organic Nepal Network"></a>
 							</div>
 						</div>
 					</div>
