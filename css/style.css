@@ -185,3 +185,13 @@
 	letter-spacing: 0.5px !important;
 	margin-top: 1px !important;
 }
+
+/* Dynamic Cart Badge Animation */
+@keyframes badgePop {
+	0% { transform: scale(1); }
+	50% { transform: scale(1.35); }
+	100% { transform: scale(1); }
+}
+.block-cart .cart-title .cart-count.badge-pop {
+	animation: badgePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
